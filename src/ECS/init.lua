@@ -22,24 +22,21 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-]]--
-
+]] --
 -- GTKIT - ECS Library for Love2D
 -- Author: Mohammed Sinan Al-Mosa
-
 local ECS = {
     entities = {},
     components = {},
     systems = {},
-    nextEntityID = 0,
-	ldtk_entities = {}
+    EntityID = 0
 }
 
 -- Helper Functions
 function ECS.createEntity()
-    ECS.nextEntityID = ECS.nextEntityID + 1
-    ECS.entities[ECS.nextEntityID] = {}
-    return ECS.nextEntityID
+    ECS.EntityID = ECS.EntityID + 1
+    ECS.entities[ECS.EntityID] = {}
+    return ECS.EntityID
 end
 
 function ECS.addComponent(entity, componentType, data)
