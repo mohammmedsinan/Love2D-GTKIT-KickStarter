@@ -31,9 +31,11 @@ local data = {
 
 local RenderSystem = {
     draw = function()
-        love.graphics.setColor(1, 0, 0)
+        love.graphics.push()
+        love.graphics.setColor(1, 3, 0)
         love.graphics.rectangle("fill", data.physics.init:getX(), data.physics.init:getY(), data.sprite.width,
             data.sprite.height)
+        love.graphics.pop()
     end,
 
     update = function() -- dt
