@@ -1,6 +1,5 @@
 local ECS = require "ECS";
 local Physics = require "lib.Physics";
-local player = require "entities.player"
 local camera = require "lib.camera";
 local Contact = require "plugin.ContactManager";
 local sti = require "lib.sti";
@@ -14,7 +13,8 @@ function love.load()
     -- love.window.setFullscreen(true)
     ECS.loadWorld()
     Physics.world:setCallbacks(Contact.beginContact, Contact.endContact, Contact.preSolve, Contact.postSolve)
-    map = sti("t.lua")
+    map = sti("t.lua", {"box2d"})
+    map:box2d_init(Physics.world);
 end
 
 function love.update(dt)
@@ -28,6 +28,8 @@ function love.draw()
     Camera:attach()
     ECS.drawWorld()
     map:draw()
+    love.graphics.setColor(1, 0, 0)
+    map:box2d_draw()
     Camera:detach()
 end
 
