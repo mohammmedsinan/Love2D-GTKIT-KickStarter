@@ -25,6 +25,9 @@ SOFTWARE.
 ]] --
 -- GTKIT - ECS Library for Love2D
 -- Author: Mohammed Sinan Al-Mosa
+-- Version: 1.0.0
+
+
 local ECS = {
     entities = {},
     components = {},
@@ -49,6 +52,12 @@ end
 
 function ECS.getComponent(entity, componentType)
     return ECS.components[componentType] and ECS.components[componentType][entity]
+end
+
+function ECS.updateComponent(entity, componentType, data)
+    if ECS.components[componentType] then
+        ECS.components[componentType][entity] = data
+    end
 end
 
 function ECS.removeComponent(entity, componentType)

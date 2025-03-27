@@ -22,22 +22,21 @@ local data = {
         width = 50,
         height = 50
     },
-    tag = {
-        type = "player"
-    },
+    tag = "player",
     speed = 400,
     layer = Physics.physicsLayers.player,
     physics = {}
 }
 
 EventManager:registerEntity(player)
-EventManager:addEventListener(player, "onEnter", function(event)
-    print(ECS.getComponent(event.entityB, "tag").type)
+EventManager:addEventListener("onEnter", function(event)
+    if ECS.getComponent(event.entityB, "tag") == "enemy" then
+        print("Player collided with enemy")
+    end
 end)
 
 local RenderSystem = {
     draw = function()
-        love.graphics.setColor(1, 0, 0)
         love.graphics.rectangle("fill", data.physics.init:getX(), data.physics.init:getY(), data.sprite.width,
             data.sprite.height)
     end,

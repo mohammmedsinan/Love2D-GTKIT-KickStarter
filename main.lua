@@ -9,8 +9,7 @@ require("utils");
 
 function love.load()
     Camera = camera()
-    Physics.worldInitialize(0, 0, true);
-    -- love.window.setFullscreen(true)
+    Physics.worldInitialize(0, 300, true);
     ECS.loadWorld()
     Physics.world:setCallbacks(Contact.beginContact, Contact.endContact, Contact.preSolve, Contact.postSolve)
     map = sti("t.lua", {"box2d"})
@@ -20,7 +19,6 @@ end
 function love.update(dt)
     Physics.update(dt);
     ECS.updateWorld(dt);
-    -- Camera:lookAt(player_pos.init:getPosition())
     map:update(dt)
 end
 
@@ -28,8 +26,6 @@ function love.draw()
     Camera:attach()
     ECS.drawWorld()
     map:draw()
-    love.graphics.setColor(1, 0, 0)
-    map:box2d_draw()
     Camera:detach()
 end
 
